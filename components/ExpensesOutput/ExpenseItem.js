@@ -5,7 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 const ExpenseItem = (props) => {
   const navi = useNavigation();
   const expensePressed = () => {
-    navi.navigate("Manage Expense");
+    navi.navigate("Manage Expense", {
+      expId: props.id,
+    });
   };
   return (
     <Pressable
