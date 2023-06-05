@@ -12,11 +12,9 @@ const ExpensesSummary = (props) => {
   // second argument 0 will be assigned to sum for the first time running the function, otherwise sum will be assigned to undefined
   //Argument "exp" will copy the data from the expenses props.
   return (
-    <View style={styles.outerContainer}>
-      <View style={styles.contrainer}>
-        <Text style={styles.period}>{props.periodName}</Text>
-        <Text style={styles.sum}>Rs {sum1.toFixed(2)}</Text>
-      </View>
+    <View style={styles.contrainer}>
+      <Text style={styles.period}>{props.periodName}</Text>
+      <Text style={styles.sum}>Rs {sum1.toFixed(2)}</Text>
     </View>
   );
 };
@@ -24,9 +22,6 @@ const ExpensesSummary = (props) => {
 export default ExpensesSummary;
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    alignItems: "center",
-  },
   contrainer: {
     padding: 8,
     backgroundColor: GlobalStyles.colors.primary50,
@@ -34,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "99%",
+    marginBottom: 15,
   },
   period: {
     fontSize: 12,
