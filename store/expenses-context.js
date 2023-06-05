@@ -18,7 +18,18 @@ const expensesReducer = (state, action) => {
 };
 
 const ExpensesContextProvider = ({ children }) => {
-  useReducer();
+  const [expensesState, dispatch] = useReducer(expensesReducer);
+
+  const addExp = (expenseData) => {
+    dispatch({ type: "ADD", payload: expenseData });
+  };
+  const delExp = (id) => {
+    dispatch({ type: "DELETE", payload: id });
+  };
+
+  const updateExp = (id, expenseData) => {
+    dispatch({ type: "UPDATE", payload: { id: id, data: expenseData } });
+  };
 
   return <ExpensesContext.Provider>{children}</ExpensesContext.Provider>;
 };
