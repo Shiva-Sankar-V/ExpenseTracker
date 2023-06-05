@@ -1,16 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
 
 const ExpensesSummary = (props) => {
-  const sum1 = props.expenses.reduce((sum, expense) => {
-    return sum + expense.amt;
+  const sum1 = props.expenses.reduce((sum, exp) => {
+    // console.log(sum);
+    // console.log(exp.amt);
+    return sum + exp.amt;
   }, 0);
+
   //reduce method will run for every instance for the expenses array and
   // second argument 0 will be assigned to sum for the first time running the function, otherwise sum will be assigned to undefined
-
+  //Argument "exp" will copy the data from the expenses props.
   return (
     <View>
       <Text>{props.periodName}</Text>
-      <Text>Rs{sum1.tofixed(2)}</Text>
+      <Text>Rs {sum1.toFixed(2)}</Text>
     </View>
   );
 };

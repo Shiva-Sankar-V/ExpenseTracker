@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 
@@ -36,6 +35,8 @@ const Dummy_Expenses = [
   },
 ];
 
+// console.log(Dummy_Expenses[0].amt);
+
 const ExpensesOutput = (props) => {
   return (
     <View>
@@ -43,7 +44,7 @@ const ExpensesOutput = (props) => {
         periodName={props.expensesPeriod}
         expenses={Dummy_Expenses}
       />
-      <ExpensesList />
+      <ExpensesList expenses={Dummy_Expenses} />
     </View>
   );
 };
