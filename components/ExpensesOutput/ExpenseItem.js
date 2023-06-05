@@ -5,11 +5,12 @@ const ExpenseItem = (props) => {
   return (
     <Pressable>
       <View style={styles.item}>
-        <Text style={[styles.textbase, styles.description]}>
-          {props.description}
-        </Text>
-        <Text style={styles.textbase}>{props.date.toString()}</Text>
-
+        <View>
+          <Text style={[styles.textbase, styles.description]}>
+            {props.description}
+          </Text>
+          <Text style={styles.textbase}>{props.date.toString()}</Text>
+        </View>
         <View style={styles.expenseContainer}>
           <Text style={styles.amount}>{props.amt}</Text>
         </View>
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: 6,
-    elevation: 3,
+    elevation: 5,
     shadowColor: GlobalStyles.colors.gray500,
     shadowRadius: 4,
     shadowOffset: { width: 1, height: 1 },
