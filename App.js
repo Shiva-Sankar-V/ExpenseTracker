@@ -17,7 +17,7 @@ const bottomTab = createBottomTabNavigator();
 function ExpensesOverview() {
   return (
     <bottomTab.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
@@ -28,11 +28,11 @@ function ExpensesOverview() {
             size={24}
             color={tintColor}
             press={() => {
-              console.log("icon pressed");
+              navigation.navigate("Manage Expense");
             }}
           />
         ),
-      }}
+      })}
     >
       <bottomTab.Screen
         name="Recent"
