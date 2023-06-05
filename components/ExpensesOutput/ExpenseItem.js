@@ -3,8 +3,14 @@ import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 
 const ExpenseItem = (props) => {
+  const expensePressed = () => {
+    console.log("expense list pressed");
+  };
   return (
-    <Pressable>
+    <Pressable
+      onpress={expensePressed}
+      style={({ pressed }) => pressed && styles.pressed}
+    >
       <View style={styles.item}>
         <View>
           <Text style={[styles.textbase, styles.description]}>
@@ -57,5 +63,8 @@ const styles = StyleSheet.create({
   },
   amount: {
     color: GlobalStyles.colors.primary500,
+  },
+  pressed: {
+    opacity: 0.75,
   },
 });
