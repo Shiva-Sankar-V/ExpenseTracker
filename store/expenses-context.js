@@ -7,6 +7,16 @@ export const ExpensesContext = createContext({
   updateExp: (id, { description, amt, date }) => {},
 });
 
+const expensesReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+    case "UPDATE":
+    case "DELETE":
+    default:
+      return state;
+  }
+};
+
 const ExpensesContextProvider = ({ children }) => {
   useReducer();
 
