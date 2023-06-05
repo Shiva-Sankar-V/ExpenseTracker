@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 const ExpensesSummary = (props) => {
   const sum1 = props.expenses.reduce((sum, expense) => {
-    return sum + expense.amount;
+    return sum + expense.amt;
   }, 0);
   //reduce method will run for every instance for the expenses array and
   // second argument 0 will be assigned to sum for the first time running the function, otherwise sum will be assigned to undefined
