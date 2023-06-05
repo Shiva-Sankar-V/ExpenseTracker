@@ -14,16 +14,25 @@ const ManageExpense = ({ route, navigation }) => {
     });
   }, [navigation, isEdit]);
 
-  const deleteExpHandler = () => {};
-  const cancelHandler = () => {};
-  const confirmHandler = () => {};
+  const deleteExpHandler = () => {
+    navigation.goBack();
+  };
+
+  const cancelHandler = () => {
+    navigation.goBack();
+  };
+
+  const confirmHandler = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button style={styles.button} mode="flat" press={cancelHandler}>
           Cancel
         </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
+        <Button style={styles.button} press={confirmHandler}>
           {isEdit ? "Update" : "Add"}
         </Button>
       </View>
