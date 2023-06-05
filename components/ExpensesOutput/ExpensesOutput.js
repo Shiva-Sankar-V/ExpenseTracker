@@ -6,7 +6,10 @@ import ExpensesList from "./ExpensesList";
 const ExpensesOutput = (props) => {
   return (
     <View>
-      <ExpensesSummary />
+      <ExpensesSummary
+        periodName={props.expensesPeriod}
+        expenses={props.expenses}
+      />
       <ExpensesList />
     </View>
   );
