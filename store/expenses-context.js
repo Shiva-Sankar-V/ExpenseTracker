@@ -93,7 +93,17 @@ const expensesReducer = (state, action) => {
     case "ADD":
       const id = new Date().toString() + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
+
     case "UPDATE":
+      const updatableExpIndex = state.findIndex(
+        (expense) => expense.id === action.payload.id
+      );
+      const updatableExp = state[updatableExpIndex];
+      const updatedItem = { ...updatableExp, ...action.payload.data };
+      const updatedExp = [...state];
+      updatedExp[updatableExpIndex] = updatedItem;
+      return updatedExp;
+
     case "DELETE":
     default:
       return state;
