@@ -105,7 +105,7 @@ const expensesReducer = (state, action) => {
       return updatedExp;
 
     case "DELETE":
-      return state.filter((expense) => expense.id !== action.payload.id);
+      return state.filter((expense) => expense.id !== action.payload);
 
     default:
       return state;
@@ -115,22 +115,22 @@ const expensesReducer = (state, action) => {
 const ExpensesContextProvider = ({ children }) => {
   const [expensesState, dispatch] = useReducer(expensesReducer, Dummy_Expenses);
 
-  const addExp = (expenseData) => {
+  const addExp1 = (expenseData) => {
     dispatch({ type: "ADD", payload: expenseData });
   };
-  const delExp = (id) => {
+  const delExp1 = (id) => {
     dispatch({ type: "DELETE", payload: id });
   };
 
-  const updateExp = (id, expenseData) => {
+  const updateExp1 = (id, expenseData) => {
     dispatch({ type: "UPDATE", payload: { id: id, data: expenseData } });
   };
 
   const val = {
     expenses: expensesState,
-    addExpense: addExp,
-    updateExpense: updateExp,
-    deleteExpense: delExp,
+    addExp: addExp1,
+    updateExp: updateExp1,
+    delExp: delExp1,
   };
 
   return (

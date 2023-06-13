@@ -7,6 +7,7 @@ import { getReqDate } from "../util/date";
 
 const RecentExpense = () => {
   const expCtx = useContext(ExpensesContext);
+
   const recentExp = expCtx.expenses.filter((expense) => {
     const today = new Date();
     const date7DaysAgo = getReqDate(today, 7);
