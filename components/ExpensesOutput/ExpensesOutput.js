@@ -8,9 +8,9 @@ const ExpensesOutput = (props) => {
     <View style={styles.container}>
       <ExpensesSummary
         periodName={props.expensesPeriod}
-        expenses={Dummy_Expenses}
+        expenses={props.expenses}
       />
-      <ExpensesList expenses={Dummy_Expenses} />
+      <ExpensesList expenses={props.expenses} />
     </View>
   );
 };
