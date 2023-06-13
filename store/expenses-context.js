@@ -65,19 +65,19 @@ const Dummy_Expenses = [
     id: "e11",
     description: "Monitor",
     amt: 8571,
-    date: new Date("2023-04-09"),
+    date: new Date("2023-06-05"),
   },
   {
     id: "e12",
     description: "Blinkit",
     amt: 284,
-    date: new Date("2023-04-12"),
+    date: new Date("2023-06-08"),
   },
   {
     id: "e13",
     description: "Vegetables",
     amt: 345,
-    date: new Date("2023-04-15"),
+    date: new Date("2023-06-10"),
   },
 ];
 
