@@ -46,7 +46,7 @@ const ManageExpense = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} mode="flat" press={cancelHandler}>
+        <Button style={styles.button} press={cancelHandler}>
           Cancel
         </Button>
         <Button style={styles.button} press={confirmHandler}>
