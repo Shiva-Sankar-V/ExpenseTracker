@@ -27,6 +27,11 @@ const ManageExpense = ({ route, navigation }) => {
   };
 
   const confirmHandler = () => {
+    if (isEdit) {
+      expCtx.updateExp();
+    } else {
+      expCtx.addExp();
+    }
     navigation.goBack();
   };
 
