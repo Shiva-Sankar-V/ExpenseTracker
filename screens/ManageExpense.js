@@ -28,9 +28,17 @@ const ManageExpense = ({ route, navigation }) => {
 
   const confirmHandler = () => {
     if (isEdit) {
-      expCtx.updateExp();
+      expCtx.updateExp(editedExpId, {
+        description: "Update Expense Test",
+        amt: 499,
+        date: new Date("2023-06-14"),
+      });
     } else {
-      expCtx.addExp();
+      expCtx.addExp({
+        description: "Add Expense Test",
+        amt: 199,
+        date: new Date("2023-06-15"),
+      });
     }
     navigation.goBack();
   };
