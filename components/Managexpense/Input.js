@@ -1,17 +1,17 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import { GlobalStyles } from "../../constants/styles";
 
 const Input = ({ label, textInputConfig }) => {
   return (
-    <View>
-      <Text>{label}</Text>
-      <TextInput {...textInputConfig} />
+    <View style={styles.inputCont}>
+      <Text style={styles.label}>{label}</Text>
+      <TextInput style={styles.textInput} {...textInputConfig} />
     </View>
   );
 };
 
 export default Input;
 
-const styles = StyleSheet.create({});
 //Since the properties required for textinput is more and by doing as above
 // we will be adding more and more cusrom props to our custom component just to forward them to our text input component.
 
@@ -19,3 +19,22 @@ const styles = StyleSheet.create({});
 // We will then provide the prop as object and the property names used in that object should match
 // the property names supported by TextInput and the values for those properties then are simply values accepeted
 // by the props we can set on TextInput
+
+const styles = StyleSheet.create({
+  inputCont: {
+    marginHorizontal: 4,
+    marginVertical: 8,
+  },
+  label: {
+    fontSize: 12,
+    color: GlobalStyles.colors.primary100,
+    marginBottom: 4,
+  },
+  textInput: {
+    backgroundColor: GlobalStyles.colors.primary100,
+    color: GlobalStyles.colors.primary700,
+    padding: 6,
+    borderRadius: 6,
+    fontSize: 18,
+  },
+});
