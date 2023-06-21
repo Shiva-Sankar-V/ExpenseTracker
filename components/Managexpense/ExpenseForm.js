@@ -11,7 +11,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputVal, setInputVal] = useState({
     amount: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
     date: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
-    description: "",
+    description: defaultVal ? defaultVal.description : "",
   });
   function inputChangeHandler(inputIdentifier, enteredVal) {
     setInputVal((curInputVal) => {
