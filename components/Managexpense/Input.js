@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     padding: 6,
     borderRadius: 6,
     fontSize: 18,
+    minWidth: "50%",
   },
   imputMultiline: {
     minHeight: 100,
