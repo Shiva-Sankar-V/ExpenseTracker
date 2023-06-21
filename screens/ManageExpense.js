@@ -12,6 +12,8 @@ const ManageExpense = ({ route, navigation }) => {
   const editedExpId = route.params?.expId;
   const isEdit = !!editedExpId;
 
+  const selectedExp = expCtx.expenses.find((exp) => exp.id === editedExpId);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEdit ? "Edit Expense" : "Add Expense",
