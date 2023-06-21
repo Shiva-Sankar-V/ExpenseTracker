@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
 import { useState } from "react";
+import Button from "../ExpensesOutput/UI/Button";
 
 const ExpenseForm = () => {
   const [inputVal, setInputVal] = useState({
@@ -33,6 +34,7 @@ const ExpenseForm = () => {
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
+            keyboardType: "phone-pad",
             onChangeText: inputChangeHandler.bind(this, "date"),
             value: inputVal.date,
           }}
@@ -47,6 +49,14 @@ const ExpenseForm = () => {
           value: inputVal.description,
         }}
       />
+      <View style={styles.buttonContainer}>
+        <Button style={styles.button} press={cancelHandler}>
+          Cancel
+        </Button>
+        <Button style={styles.button} press={confirmHandler}>
+          {isEdit ? "Update" : "Add"}
+        </Button>
+      </View>
     </View>
   );
 };
@@ -66,7 +76,15 @@ const styles = StyleSheet.create({
   },
   input: {
     flexDirection: "row",
-
     justifyContent: "space-between",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8,
   },
 });
