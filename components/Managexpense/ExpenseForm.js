@@ -3,10 +3,14 @@ import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
 
+//defaultVal.date returns date as object.
+// toISOString is a bulit-in JS method for converting date object to date string
+// in the format of YYYY-MM-DD.slice method will reduce the date format to 1st 10digits
+
 const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputVal, setInputVal] = useState({
     amount: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
-    date: "",
+    date: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
     description: "",
   });
   function inputChangeHandler(inputIdentifier, enteredVal) {
