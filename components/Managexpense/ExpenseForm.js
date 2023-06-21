@@ -17,7 +17,17 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit }) => {
       };
     });
   }
-  function sumbitHandler() {}
+  //+ will convert the strings to numbers. the input values the textinput always
+  // return datatype as strings
+
+  function sumbitHandler() {
+    const expData = {
+      amt: +inputVal.amount,
+      date: new Date(inputVal.date),
+      description: inputVal.description,
+    };
+    onSumbit(expData);
+  }
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expenses</Text>
