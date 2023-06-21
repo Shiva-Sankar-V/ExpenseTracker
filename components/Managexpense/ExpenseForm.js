@@ -3,9 +3,9 @@ import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
 
-const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit }) => {
+const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputVal, setInputVal] = useState({
-    amount: "",
+    amount: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
     date: "",
     description: "",
   });

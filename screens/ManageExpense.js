@@ -44,6 +44,7 @@ const ManageExpense = ({ route, navigation }) => {
         submitButtonLabel={isEdit ? "Update" : "Add"}
         onCancel={cancelHandler}
         onSumbit={confirmHandler}
+        defaultVal={selectedExp}
       />
       {isEdit && (
         <View style={styles.deleteContainer}>
