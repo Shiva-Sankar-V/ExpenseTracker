@@ -3,7 +3,7 @@ import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit }) => {
   const [inputVal, setInputVal] = useState({
     amount: "",
     date: "",
@@ -17,6 +17,7 @@ const ExpenseForm = () => {
       };
     });
   }
+  function sumbitHandler() {}
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expenses</Text>
@@ -50,11 +51,11 @@ const ExpenseForm = () => {
         }}
       />
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} press={cancelHandler}>
+        <Button style={styles.button} press={onCancel}>
           Cancel
         </Button>
-        <Button style={styles.button} press={confirmHandler}>
-          {isEdit ? "Update" : "Add"}
+        <Button style={styles.button} press={sumbitHandler}>
+          {submitButtonLabel}
         </Button>
       </View>
     </View>
