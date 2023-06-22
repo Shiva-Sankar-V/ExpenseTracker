@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
@@ -31,7 +31,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
       description: inputVal.description,
     };
 
-    const amtIsValid = isNaN(expData.amt) && expData.amt > 0;
+    const amtIsValid = !isNaN(expData.amt) && expData.amt > 0;
 
     // condition for checking amont validation only if
     // amount is a number and greater than zero
@@ -46,6 +46,11 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
 
     //trim will remove excess white space available in the beginning and ending of a sentence.
     //length will calculate the no of characters in the description.
+
+    if (!amtIsValid || !dateIsValid || !descIsValid) {
+      Alert.alert("Invalid Input", "Please check your input values");
+      return;
+    }
 
     onSumbit(expData);
   }
