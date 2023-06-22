@@ -11,17 +11,23 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputs, setInputs] = useState({
     amount: {
       value: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
-      isValid: defaultVal ? true : false,
+      isValid: true,
     },
     date: {
       value: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
-      isValid: defaultVal ? true : false,
+      isValid: true,
     },
     description: {
       value: defaultVal ? defaultVal.description : "",
-      isValid: defaultVal ? true : false,
+      isValid: true,
     },
   });
+
+  //Since add expense screen displays the error message right from the beginning
+  //Change the default isValid to true.
+  //Technically, empty string should have isValid as false.
+  //Since we are checking for the validation and updating the state
+  //it is no issues to change the default validity
 
   function inputChangeHandler(inputIdentifier, enteredVal) {
     setInputs((curInputs) => {
