@@ -9,9 +9,18 @@ import Button from "../ExpensesOutput/UI/Button";
 
 const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputVal, setInputVal] = useState({
-    amount: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
-    date: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
-    description: defaultVal ? defaultVal.description : "",
+    amount: {
+      value: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
+      isValid: defaultVal ? true : false,
+    },
+    date: {
+      value: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
+      isValid: defaultVal ? true : false,
+    },
+    description: {
+      value: defaultVal ? defaultVal.description : "",
+      isValid: defaultVal ? true : false,
+    },
   });
   function inputChangeHandler(inputIdentifier, enteredVal) {
     setInputVal((curInputVal) => {
