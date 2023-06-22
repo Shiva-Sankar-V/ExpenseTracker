@@ -30,8 +30,26 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
       date: new Date(inputVal.date),
       description: inputVal.description,
     };
+
+    const amtIsValid = isNaN(expData.amt) && expData.amt > 0;
+
+    // condition for checking amont validation only if
+    // amount is a number and greater than zero
+
+    const dateIsValid = expData.date.toString() !== "Invalid Date";
+
+    //Standard js provides the string "Invalid Date" if we provide invalid format to new Date()
+    //eg: new Date('Hello World') will return Invalid Date as object.
+    //So if we convert it to new Date("Hello World").toString() we will get output as Invalid Date as string
+
+    const descIsValid = expData.description.trim().length > 0;
+
+    //trim will remove excess white space available in the beginning and ending of a sentence.
+    //length will calculate the no of characters in the description.
+
     onSumbit(expData);
   }
+
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expenses</Text>
