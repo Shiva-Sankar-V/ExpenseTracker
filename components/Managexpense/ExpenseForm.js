@@ -8,37 +8,44 @@ import Button from "../ExpensesOutput/UI/Button";
 // in the format of YYYY-MM-DD.slice method will reduce the date format to 1st 10digits
 
 const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
-  const [inputVal, setInputVal] = useState({
+  const [inputs, setInputs] = useState({
     amount: {
       value: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
-      isValid: defaultVal ? true : false,
+      isValid: !!defaultVal,
     },
     date: {
       value: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
-      isValid: defaultVal ? true : false,
+      isValid: !!defaultVal,
     },
     description: {
       value: defaultVal ? defaultVal.description : "",
-      isValid: defaultVal ? true : false,
+      isValid: !!defaultVal,
     },
   });
+
+  //!! will convert a truthy or falsey value into real boolean true or false
+  // So if we have no default values !! will provide false and if we have default values !! will provide true
+
   function inputChangeHandler(inputIdentifier, enteredVal) {
-    setInputVal((curInputVal) => {
+    setInputs((curInputs) => {
       return {
-        ...curInputVal,
-        [inputIdentifier]: enteredVal,
+        ...curInputs,
+        [inputIdentifier]: { value: enteredVal, isValid: true },
       };
     });
   }
-  //+ will convert the strings to numbers. the input values the textinput always
-  // return datatype as strings
+
+  //We assume the inputs provided is valid for now. So i have provided the isValid as truthy.
+  //If the enetered value is false we will check them later and then update accordingly.
 
   function sumbitHandler() {
     const expData = {
-      amt: +inputVal.amount,
-      date: new Date(inputVal.date),
-      description: inputVal.description,
+      amt: +inputs.amount.value,
+      date: new Date(inputs.date.value),
+      description: inputs.description.value,
     };
+    //+ will convert the strings to numbers. the input values the textinput always
+    // return datatype as strings
 
     const amtIsValid = !isNaN(expData.amt) && expData.amt > 0;
 
@@ -73,7 +80,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangeHandler.bind(this, "amount"),
-            value: inputVal.amount,
+            value: inputs.amount.value,
           }}
         />
         <Input
@@ -83,7 +90,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
             maxLength: 10,
             keyboardType: "phone-pad",
             onChangeText: inputChangeHandler.bind(this, "date"),
-            value: inputVal.date,
+            value: inputs.date.value,
           }}
         />
       </View>
@@ -93,7 +100,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
           multiline: true,
           autoCapitalize: "sentences",
           onChangeText: inputChangeHandler.bind(this, "description"),
-          value: inputVal.description,
+          value: inputs.description.value,
         }}
       />
       <View style={styles.buttonContainer}>
