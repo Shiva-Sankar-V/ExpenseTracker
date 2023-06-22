@@ -11,20 +11,17 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
   const [inputs, setInputs] = useState({
     amount: {
       value: defaultVal ? defaultVal.amt.toFixed(2).toString() : "",
-      isValid: !!defaultVal,
+      isValid: defaultVal ? true : false,
     },
     date: {
       value: defaultVal ? defaultVal.date.toISOString().slice(0, 10) : "",
-      isValid: !!defaultVal,
+      isValid: defaultVal ? true : false,
     },
     description: {
       value: defaultVal ? defaultVal.description : "",
-      isValid: !!defaultVal,
+      isValid: defaultVal ? true : false,
     },
   });
-
-  //!! will convert a truthy or falsey value into real boolean true or false
-  // So if we have no default values !! will provide false and if we have default values !! will provide true
 
   function inputChangeHandler(inputIdentifier, enteredVal) {
     setInputs((curInputs) => {
@@ -64,12 +61,26 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
     //length will calculate the no of characters in the description.
 
     if (!amtIsValid || !dateIsValid || !descIsValid) {
-      Alert.alert("Invalid Input", "Please check your input values");
-      return;
+      // Alert.alert("Invalid Input", "Please check your input values");
+      // console.log(amtIsValid, dateIsValid, descIsValid);
+      setInputs((currentInputs) => {
+        return {
+          amount: { value: currentInputs.amount.value, isValid: amtIsValid },
+          date: { value: currentInputs.date.value, isValid: dateIsValid },
+          description: {
+            value: currentInputs.description.value,
+            isValid: descIsValid,
+          },
+        };
+      });
+    } else {
+      onSumbit(expData);
     }
-
-    onSumbit(expData);
   }
+  const formIsValid =
+    !inputs.amount.isValid ||
+    !inputs.date.isValid ||
+    !inputs.description.isValid;
 
   return (
     <View style={styles.form}>
@@ -103,6 +114,9 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
           value: inputs.description.value,
         }}
       />
+      {formIsValid && (
+        <Text>Invalid input Values - Please check your entered data!</Text>
+      )}
       <View style={styles.buttonContainer}>
         <Button style={styles.button} press={onCancel}>
           Cancel
