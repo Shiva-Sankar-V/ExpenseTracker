@@ -95,6 +95,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
       <View style={styles.input}>
         <Input
           label="Amount"
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangeHandler.bind(this, "amount"),
@@ -103,6 +104,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
         />
         <Input
           label="Date"
+          invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
@@ -114,6 +116,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
       </View>
       <Input
         label="Description"
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           autoCapitalize: "sentences",
