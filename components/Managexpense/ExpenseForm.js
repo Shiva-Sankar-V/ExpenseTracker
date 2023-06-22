@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Alert } from "react-native";
 import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
+import { GlobalStyles } from "../../constants/styles";
 
 //defaultVal.date returns date as object.
 // toISOString is a bulit-in JS method for converting date object to date string
@@ -121,7 +122,9 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
         }}
       />
       {formIsValid && (
-        <Text>Invalid input Values - Please check your entered data!</Text>
+        <Text style={styles.errorText}>
+          Invalid input Values - Please check your entered data!
+        </Text>
       )}
       <View style={styles.buttonContainer}>
         <Button style={styles.button} press={onCancel}>
@@ -151,6 +154,12 @@ const styles = StyleSheet.create({
   input: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  errorText: {
+    textAlign: "center",
+    fontSize: 16,
+    color: GlobalStyles.colors.error500,
+    margin: 8,
   },
   buttonContainer: {
     flexDirection: "row",
