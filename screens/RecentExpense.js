@@ -10,7 +10,10 @@ const RecentExpense = () => {
   const expCtx = useContext(ExpensesContext);
 
   useEffect(() => {
-    fetchExp();
+    async function getExp() {
+      const expenses = await fetchExp();
+    }
+    getExp();
   }, []);
 
   const recentExp = expCtx.expenses.filter((expense) => {
