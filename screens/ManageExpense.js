@@ -6,9 +6,11 @@ import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/Managexpense/ExpenseForm";
 import { storeExpense, updateExpense, deleteExpense } from "../util/http";
 import Loading from "../components/ExpensesOutput/UI/Loading";
+import Error from "../components/ExpensesOutput/UI/Error";
 
 const ManageExpense = ({ route, navigation }) => {
   const [isManaging, setIsManaging] = useState(false);
+  const [error1, setError1] = useState();
   const expCtx = useContext(ExpensesContext);
 
   const editedExpId = route.params?.expId;
@@ -24,9 +26,14 @@ const ManageExpense = ({ route, navigation }) => {
 
   async function deleteExpHandler() {
     setIsManaging(true);
-    await deleteExpense(editedExpId);
-    expCtx.delExp(editedExpId);
-    navigation.goBack();
+    try {
+      await deleteExpense(editedExpId);
+      expCtx.delExp(editedExpId);
+      navigation.goBack();
+    } catch (error) {
+      setError1("Could not delete expense - Please try again later");
+      setIsManaging(false);
+    }
   }
 
   const cancelHandler = () => {
@@ -35,14 +42,27 @@ const ManageExpense = ({ route, navigation }) => {
 
   async function confirmHandler(expData) {
     setIsManaging(true);
-    if (isEdit) {
-      expCtx.updateExp(editedExpId, expData);
-      await updateExpense(editedExpId, expData);
-    } else {
-      const id = await storeExpense(expData);
-      expCtx.addExp({ ...expData, id: id });
+    try {
+      if (isEdit) {
+        expCtx.updateExp(editedExpId, expData);
+        await updateExpense(editedExpId, expData);
+      } else {
+        const id = await storeExpense(expData);
+        expCtx.addExp({ ...expData, id: id });
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError1("Could not save data - Please try again later!");
+      setIsManaging(false);
     }
-    navigation.goBack();
+  }
+
+  function errorHandler() {
+    setError1(null);
+  }
+
+  if (error1 && !isManaging) {
+    return <Error message={error1} onConfirm={errorHandler} />;
   }
 
   if (isManaging) {
