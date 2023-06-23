@@ -8,6 +8,9 @@ export const ExpensesContext = createContext({
   updateExp: (id, { description, amt, date }) => {},
 });
 
+//when we add a new data it gets displayed in the top and if we reload it gets displayed to bottom
+//So we use .reverse method to display the expenses as we added even after reload
+
 const expensesReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
@@ -15,7 +18,8 @@ const expensesReducer = (state, action) => {
       return [{ ...action.payload, id: id }, ...state];
 
     case "SET":
-      return action.payload;
+      const invertedData = action.payload.reverse();
+      return invertedData;
 
     case "UPDATE":
       const updatableExpIndex = state.findIndex(
