@@ -7,7 +7,7 @@ const Error = ({ message, onConfirm }) => {
     <View style={styles.container}>
       <Text style={[styles.text, styles.title]}>An error occurred!</Text>
       <Text style={styles.text}>{message}</Text>
-      <Button onPress={onConfirm}>Okay</Button>
+      <Button press={onConfirm}>Okay</Button>
     </View>
   );
 };
