@@ -11,11 +11,14 @@ export const ExpensesContext = createContext({
 //when we add a new data it gets displayed in the top and if we reload it gets displayed to bottom
 //So we use .reverse method to display the expenses as we added even after reload
 
+//since firebase creates a unquie id for each pushed data we should use the same id locally also
+//so that when editing for deleting the data locally firebase gets updated.
+// So in ADD case I expect payload is a object fetched from firebase also contain id
+
 const expensesReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString() + Math.random().toString();
-      return [{ ...action.payload, id: id }, ...state];
+      return [action.payload, ...state];
 
     case "SET":
       const invertedData = action.payload.reverse();

@@ -2,15 +2,15 @@ import axios from "axios";
 
 const DB_url = "https://expensesummary-9fbaf-default-rtdb.firebaseio.com";
 
-//Since we will be using the root url many times i am providing it to a constant so that
-//when we require to change root url we can change in one place to change in many places
+//when we post a data firebase provides response to that request.
+//So we can use async await to get the response data which will have the generated id.
+//Firebase stores the id in the name of '.name'
 
-export function storeExpense(expenseData) {
-  axios.post(DB_url + "/expenses.json", expenseData);
+export async function storeExpense(expenseData) {
+  const response = await axios.post(DB_url + "/expenses.json", expenseData);
+  const id = response.data.name;
+  return id;
 }
-
-//"https://expensesummary-9fbaf-default-rtdb.firebaseio.com/" is root URL.
-// We can add more (segments i.e. node i.e. folder) to it as above. '.json' is firebase specific syntax.
 
 export async function fetchExp() {
   const response = await axios.get(DB_url + "/expenses.json");
