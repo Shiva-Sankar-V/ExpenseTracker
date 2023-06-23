@@ -43,6 +43,7 @@ const RecentExpense = () => {
     const date7DaysAgo = getReqDate(today, 7);
     return expense.date > date7DaysAgo;
   });
+
   return (
     <ExpensesOutput
       expenses={recentExp}

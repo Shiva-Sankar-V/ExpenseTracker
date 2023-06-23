@@ -7,6 +7,7 @@ const Input = ({ label, invalid, textInputConfig }) => {
   if (textInputConfig && textInputConfig.multiline) {
     inputStyles.push(styles.imputMultiline);
   }
+
   if (invalid) {
     inputStyles.push(styles.invalidInput);
   }
@@ -25,11 +26,9 @@ export default Input;
 
 //Since the properties required for textinput is more and by doing as above
 // we will be adding more and more cusrom props to our custom component just to forward them to our text input component.
-
 // Simple way for doing is to get a generic custom prop and then speard them to text input.
-// We will then provide the prop as object and the property names used in that object should match
-// the property names supported by TextInput and the values for those properties then are simply values accepeted
-// by the props we can set on TextInput
+// We will then provide the prop as object and the property names used in that object should match the property names supported by
+// TextInput and the values for those properties then are simply values accepeted by the props we can set on TextInput
 
 const styles = StyleSheet.create({
   inputCont: {

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList } from "react-native";
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
 
@@ -17,5 +17,3 @@ const ExpensesList = (props) => {
 };
 
 export default ExpensesList;
-
-const styles = StyleSheet.create({});

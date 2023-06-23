@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Alert } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
 import { useState } from "react";
 import Button from "../ExpensesOutput/UI/Button";
@@ -68,7 +68,6 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
     //length will calculate the no of characters in the description.
 
     if (!amtIsValid || !dateIsValid || !descIsValid) {
-      // Alert.alert("Invalid Input", "Please check your input values");
       // console.log(amtIsValid, dateIsValid, descIsValid);
       setInputs((currentInputs) => {
         return {
@@ -84,6 +83,7 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSumbit, defaultVal }) => {
       onSumbit(expData);
     }
   }
+
   const formIsValid =
     !inputs.amount.isValid ||
     !inputs.date.isValid ||

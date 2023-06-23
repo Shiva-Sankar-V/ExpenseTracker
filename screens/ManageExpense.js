@@ -2,7 +2,6 @@ import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import IconButton from "../components/ExpensesOutput/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
-
 import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/Managexpense/ExpenseForm";
 import { storeExpense, updateExpense, deleteExpense } from "../util/http";
@@ -45,9 +44,11 @@ const ManageExpense = ({ route, navigation }) => {
     }
     navigation.goBack();
   }
+
   if (isManaging) {
     return <Loading />;
   }
+
   return (
     <View style={styles.container}>
       <ExpenseForm
