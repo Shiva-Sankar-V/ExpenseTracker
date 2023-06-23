@@ -57,12 +57,8 @@ const ManageExpense = ({ route, navigation }) => {
     }
   }
 
-  function errorHandler() {
-    setError1(null);
-  }
-
   if (error1 && !isManaging) {
-    return <Error message={error1} onConfirm={errorHandler} />;
+    return <Error message={error1} />;
   }
 
   if (isManaging) {

@@ -26,12 +26,8 @@ const RecentExpense = () => {
     getExp();
   }, []);
 
-  function errorHandler() {
-    setError1(null);
-  }
-
   if (error1 && !isFetching) {
-    return <Error message={error1} onConfirm={errorHandler} />;
+    return <Error message={error1} />;
   }
 
   if (isFetching) {
