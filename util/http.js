@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DB_url = "https://expensesummary-9fbaf-default-rtdb.firebaseio.com";
+const DB_url = "https://expensesummary-9fbaf-default-rtdb.firebaseiocom";
 
 //when we post a data firebase provides response to that request.
 //So we can use async await to get the response data which will have the generated id.
